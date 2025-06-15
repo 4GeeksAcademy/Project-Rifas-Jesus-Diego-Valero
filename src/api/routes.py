@@ -345,6 +345,9 @@ def generate_new_password():
     except Exception as e:
         print("Error:", e)
         return {"message":"No se puede enviar mail para resetear password"}, 500
+    
+
+    
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():

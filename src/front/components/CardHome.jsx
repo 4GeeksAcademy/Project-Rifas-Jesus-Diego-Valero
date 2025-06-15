@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx"
 import React from 'react';
 
-
 const CardHome = ({ premio, fecha, url }) => {
 
     const navigate = useNavigate();
-    const { store, dispatch } = useGlobalReducer()
-
+    const { store } = useGlobalReducer();
 
     const handleClick = () => {
         if (store.isLogged) {
@@ -18,45 +16,73 @@ const CardHome = ({ premio, fecha, url }) => {
         }
     };
 
-
     return (
-        < div className="card"
-            style=
-            {{
-                width: '18rem',
-                marginBottom: '30px',
-                border: '3px solid RGB(10,19,31)',
-                borderRadius: '20px'
-            }}>
-            <div
-                style={{
-                    borderTopLeftRadius: '20px',
-                    borderTopRightRadius: '20px',
-                    overflow: 'hidden',
-                }}
-            >
-                <img src={url} className="card-img-top" alt="..." style={{ width: '100%', display: 'block' }} />
+        <div
+            className="card-home"
+            style={{
+                backgroundColor: "#0A131F",
+                border: "4px solid #000000", // borde negro más grueso
+                borderRadius: "20px",
+                overflow: "hidden",
+                width: "100%",
+                maxWidth: "320px",
+                marginBottom: "30px",
+                boxShadow: "0 15px 40px rgba(0, 0, 0, 0.7)", // sombra más fuerte desde el inicio
+                transition: "transform 0.4s ease, box-shadow 0.4s ease",
+                cursor: "pointer",
+            }}
+            onMouseEnter={e => {
+                e.currentTarget.style.transform = "scale(1.06)";
+                e.currentTarget.style.boxShadow = "0 20px 60px rgba(0, 0, 0, 0.9)"; // sombra aún más intensa
+            }}
+            onMouseLeave={e => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 15px 40px rgba(0, 0, 0, 0.7)";
+            }}
+        >
+            <div style={{ width: "100%", height: "180px", overflow: "hidden" }}>
+                <img
+                    src={url}
+                    alt="Sorteo"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover"
+                    }}
+                />
             </div>
-            <div className="card-body"
-                style={{
-                }}>
-                <h5 className="card-title"></h5>
-                <div style={{ textAlign: 'left' }}>
-                    <p>
-                        <strong>Premio:  {premio}</strong>
-                    </p>
-                    <p>
-                        <strong>Fecha:  {fecha}</strong>
-                    </p>
-                </div>
-                <div className="d-flex justify-content-between align-items-center mt-3">
-                    <button className="botonComprar" onClick={handleClick}>
-                        <strong>Comprar</strong>
-                    </button>
-                </div>
-            </div>
-        </div >
-    )
-}
 
-export default CardHome
+            <div style={{ padding: "20px", color: "#FFFFFF" }}>
+                <h5 style={{ color: "#3BFFE7", fontWeight: "bold", marginBottom: "15px" }}>
+                    ¡Participa y gana!
+                </h5>
+                <p style={{ margin: 0 }}>
+                    <strong>Premio:</strong> {premio}
+                </p>
+                <p style={{ margin: "5px 0 15px 0" }}>
+                    <strong>Fecha:</strong> {fecha}
+                </p>
+                <button
+                    onClick={handleClick}
+                    style={{
+                        backgroundColor: "#3BFFE7",
+                        color: "#000000",
+                        border: "none",
+                        padding: "10px 20px",
+                        borderRadius: "10px",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                        width: "100%",
+                        transition: "background 0.3s ease"
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.backgroundColor = "#2fd8c3"}
+                    onMouseLeave={e => e.currentTarget.style.backgroundColor = "#3BFFE7"}
+                >
+                    Comprar
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default CardHome;

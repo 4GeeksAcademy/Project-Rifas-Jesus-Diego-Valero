@@ -58,7 +58,7 @@ export const Footer = () => {
 					<div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
 						<h5 style={titleStyleCyan}>Contacto</h5>
 						<p><i className="fas fa-home me-2"></i> Madrid, España</p>
-						<p><i className="fas fa-envelope me-2"></i> Info4Boleeks@yahoo.com</p>
+						<p><i className="fas fa-envelope me-2"></i> Info4Boleeks@gmail.com</p>
 						<p><i className="fas fa-phone me-2"></i> +123 456 789</p>
 					</div>
 

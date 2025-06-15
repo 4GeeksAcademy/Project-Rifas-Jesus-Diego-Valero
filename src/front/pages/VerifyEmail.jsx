@@ -11,12 +11,8 @@ export const VerifyEmail = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await fetch(backendUrl+`/api/verify-email?token=${token}`);
-
-        if (!res.ok) {
-          throw new Error("Token inválido o expirado");
-        }
-
+        const res = await fetch(`${backendUrl}/api/verify-email?token=${token}`);
+        if (!res.ok) throw new Error("Token inválido o expirado");
         const data = await res.json();
         console.log(data.message);
         setStatus("success");
@@ -30,7 +26,71 @@ export const VerifyEmail = () => {
     else setStatus("error");
   }, [token]);
 
-  if (status === "loading") return <p>Verificando email...</p>;
-  if (status === "success") return <h2>Email verificado correctamente ✅</h2>;
-  return <h2>Error al verificar el email ❌</h2>;
-}
+  const renderContent = () => {
+    switch (status) {
+      case "loading":
+        return (
+          <>
+            <h1 style={{ color: "rgb(59,255,231)", marginBottom: "20px" }}>
+              ⏳ Verificando tu email...
+            </h1>
+            <p style={{ fontSize: "1.1rem", lineHeight: "1.8" }}>
+              Estamos comprobando la validez del enlace. Por favor, espera un momento.
+            </p>
+          </>
+        );
+      case "success":
+        return (
+          <>
+            <h1 style={{ color: "rgb(59,255,231)", marginBottom: "20px" }}>
+              ✅ ¡Email verificado con éxito!
+            </h1>
+            <p style={{ fontSize: "1.1rem", lineHeight: "1.8" }}>
+              Gracias por confirmar tu dirección de correo. Ya puedes acceder a todos los servicios de <strong>4Boleeks</strong>.
+            </p>
+          </>
+        );
+      case "error":
+      default:
+        return (
+          <>
+            <h1 style={{ color: "rgb(255,99,99)", marginBottom: "20px" }}>
+              ❌ Error al verificar tu email
+            </h1>
+            <p style={{ fontSize: "1.1rem", lineHeight: "1.8" }}>
+              El enlace de verificación no es válido o ha expirado. Por favor, solicita uno nuevo desde tu cuenta.
+            </p>
+          </>
+        );
+    }
+  };
+
+  return (
+    <div
+      style={{
+        backgroundColor: "white",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "40px 20px",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "rgb(10,19,31)",
+          color: "white",
+          padding: "40px",
+          borderRadius: "12px",
+          maxWidth: "600px",
+          width: "100%",
+          boxShadow: "0 0 15px rgba(0,0,0,0.2)",
+          fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+          textAlign: "center",
+        }}
+      >
+        {renderContent()}
+      </div>
+    </div>
+  );
+};

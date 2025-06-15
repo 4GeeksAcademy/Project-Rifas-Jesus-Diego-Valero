@@ -99,10 +99,65 @@ export const Home = () => {
 	return (
 		<>
 			<BannerCarousel />
-			<div className="container" style={{ maxWidth: "1000px" }}>
-				<h1 className="mt-3">Rifas</h1>
-				<p className="mt-3 mb-3"><strong>Prueba suerte con nuestras <span style={{color:'RGB(59,255,231)' }}>rifas</span></strong></p>
-				<div className="d-flex flex-wrap justify-content-center gap-4 mt-3">
+
+			<div
+				className="text-center py-5"
+				style={{
+					backgroundColor: "#FFFFFF",
+					color: "#000000",
+					padding: "3rem 1rem",
+				}}
+			>
+				<div
+					style={{
+						width: "50%",
+						margin: "0 auto",
+					}}
+				>
+					<h1
+						style={{
+							fontSize: "3rem",
+							fontWeight: "bold",
+							animation: "fadeInDown 1s ease-out",
+						}}
+					>
+						¡Descubre nuestras{" "}
+						<span
+							style={{
+								color: "#3BFFE7",
+								textShadow: `
+							-1px -1px 0 #000,
+							1px -1px 0 #000,
+							-1px 1px 0 #000,
+							1px 1px 0 #000
+						`,
+							}}
+						>
+							rifas
+						</span>
+						!
+					</h1>
+					<p
+						style={{
+							marginTop: "1rem",
+							fontSize: "1.25rem",
+							color: "#000000",
+							lineHeight: "1.5",
+						}}
+					>
+						Pon a prueba tu suerte y participa para ganar premios increíbles. ¡Tu próxima victoria puede estar a un clic de distancia!
+					</p>
+				</div>
+			</div>
+
+			<div
+				className="container"
+				style={{
+					maxWidth: "1000px",
+					marginTop: "2rem",
+				}}
+			>
+				<div className="d-flex flex-wrap justify-content-center gap-4">
 					{rifas.map((rifa) => (
 						<div key={rifa.id} style={{ flex: "0 0 auto", width: "300px" }}>
 							<CardHome
@@ -115,6 +170,23 @@ export const Home = () => {
 					))}
 				</div>
 			</div>
+
+			<style>
+				{`
+			@keyframes fadeInDown {
+				from {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		`}
+			</style>
 		</>
+
+
 	);
 };
