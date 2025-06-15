@@ -86,7 +86,7 @@ export const Home = () => {
 	async function getRifas() {
 		try {
 			const response = await fetch(
-				"https://curly-happiness-wr55545pr65w2v9r4-3001.app.github.dev/api/rifas/"
+				`${import.meta.env.VITE_BACKEND_URL}/api/rifas/`
 			);
 			if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
 			const data = await response.json();
